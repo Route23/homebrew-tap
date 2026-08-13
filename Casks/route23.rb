@@ -22,10 +22,8 @@ cask "route23" do
   app "Route23.app"
 
   caveats <<~CAVEATS
-    Route23 is not notarized. If macOS says the app is "damaged", it was
-    quarantined on download. Install with --no-quarantine:
-      brew install --cask --no-quarantine Route23/tap/route23
-    Or clear it after install:
+    Route23 is unsigned (ad-hoc). This tap installs without quarantine, so it
+    should open normally. If macOS ever reports it as "damaged":
       xattr -dr com.apple.quarantine "#{appdir}/Route23.app"
   CAVEATS
 end
