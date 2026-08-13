@@ -15,9 +15,9 @@ cask "route23" do
     end
   end
 
-  depends_on arch:  :arm64
-  depends_on macos: ">= :sonoma"
   auto_updates true # in-app Tauri updater handles upgrades
+  depends_on arch:  :arm64
+  depends_on macos: :sonoma
 
   app "Route23.app"
 
