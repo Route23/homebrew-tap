@@ -21,6 +21,14 @@ cask "route23" do
 
   app "Route23.app"
 
+  # Unsigned build: strip the quarantine flag so Gatekeeper does not mark it
+  # "damaged". Notarization would remove the need for this.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Route23.app"],
+                   sudo: false
+  end
+
   caveats <<~CAVEATS
     Route23 is unsigned (ad-hoc). This tap installs without quarantine, so it
     should open normally. If macOS ever reports it as "damaged":
