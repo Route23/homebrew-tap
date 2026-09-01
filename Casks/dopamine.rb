@@ -17,7 +17,7 @@ cask "dopamine" do
 
   auto_updates true # in-app updater handles upgrades (ADR-0045)
   depends_on arch:  :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "dopamine.app"
 
