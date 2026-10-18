@@ -1,6 +1,6 @@
 cask "dopamine" do
-  version "0.1.5"
-  sha256 "ac63612715a2b7e93224d053c135de88633e165c98c450845a0e6f5999af4b21"
+  version "0.1.6"
+  sha256 "fdded684e0803a5a596e58d7c23829fa8de24e63372f1c38ae60a99e616db719"
 
   url "https://github.com/Route23/dopamine-releases/releases/download/v#{version}/dopamine_#{version}_aarch64.dmg",
       verified: "github.com/Route23/dopamine-releases/"
