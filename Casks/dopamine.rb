@@ -2,10 +2,9 @@ cask "dopamine" do
   version "0.1.9"
   sha256 "466cc42b107cc0b0279a2a6d0130d0ee72c5d8caa46b50054c93365e21dbbfeb"
 
-  url "https://github.com/Route23/dopamine-releases/releases/download/v#{version}/dopamine_#{version}_aarch64.dmg",
-      verified: "github.com/Route23/dopamine-releases/"
+  url "https://github.com/Route23/dopamine-releases/releases/download/v#{version}/dopamine_#{version}_aarch64.dmg"
   name "dopamine"
-  desc "macOS desktop browser built on gpui"
+  desc "Desktop browser built on gpui"
   homepage "https://route23.github.io/dopamine-releases/"
 
   livecheck do
@@ -23,10 +22,10 @@ cask "dopamine" do
 
   # Ad-hoc signed (no Apple Developer ID): strip the quarantine flag so
   # Gatekeeper does not mark it "damaged". Notarization would remove the need.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/dopamine.app"],
-                   sudo: false
+  postflight_steps do
+    # Homebrew 7 runs steps in a sandbox: declare the app as writable or xattr is refused.
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/dopamine.app"],
+        writable_paths: ["dopamine.app"], writable_base: :appdir
   end
 
   zap trash: [
